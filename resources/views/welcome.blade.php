@@ -85,9 +85,6 @@
                 </div>
 
                 <div class="links">
-                    <a href="/login">LOGIN</a>
-                    <a href="/signup">SIGN UP</a>
-                    <a href="/product">PRODUCT</a>
                 </div>
             </div>
         </div>
