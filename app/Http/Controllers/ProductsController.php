@@ -22,6 +22,10 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
+        
+        foreach($products as $product){
+            $product->product_id += $product->id+10000;
+        }
 
         return view('product.product')->with('products', $products);
     }
@@ -84,9 +88,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories=Category::all();
+
+        return view('product.create')->with('product', $product)->with('categories', $categories);
     }
 
     /**
@@ -98,7 +104,25 @@ class ProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $data = $request->only(['title', 'description', 'price', 'tenure']);
+        // check if new image
+        if ($request->hasFile('image')) {
+          // uplload it
+          $image = $request->image->store('products');
+          // delete old one
+          //$product->deleteImage();
+
+          $data['image'] = $image;
+        }
+
+        // update attributes
+        $products->update($data);
+
+        // flash message
+        session()->flash('success', 'Post updated successfully.');
+
+        // redirect user
+        return redirect(route('product.index'));
     }
 
     /**

@@ -101,7 +101,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('quotations.index') }}">
                                 <span data-feather="shopping-cart"></span>
                                 Request
                                 </a>
@@ -134,7 +134,19 @@
                     </div>
                 </nav>
             @endauth
-            @yield('content')
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+                @endif
+                @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+                @endif
+                @yield('content')
+            </main>
         </main>
     </div>
 

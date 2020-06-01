@@ -30,3 +30,7 @@ Route::post('/test', 'HomeController@test')->name('test');
 Route::resource('categories', 'CategoriesController');
 
 Route::resource('products', 'ProductsController');
+
+Route::resource('quotations', 'QuotationsController');
+
+Route::resource('logs', 'PurchaseLogsController');

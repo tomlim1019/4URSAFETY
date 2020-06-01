@@ -3,35 +3,37 @@
 @section('content')
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Products</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-secondary" >Add Product</a>
-        </div>
+        <h1 class="h2">Requests</h1>
     </div>
 
     <div class="container">
-        <table class="table table-bordered" id="productTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="requestTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Product ID</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Tenure</th>
-                    <th>Category</th>
+                    <th>User Email</th>
+                    <th>Product Title</th>
+                    <th>status</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($products as $product)
+                @foreach($requests as $request)
                     <tr>
-                        <td>{{ $product->product_id }}</td>
-                        <td>{{ $product->title }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->tenure }}</td>
-                        <td>{{ $product->category->name }}</td>
+                        <td>{{ $request->user->email }}</td>
+                        <td>{{ $request->product->title }}</td>
+                        <td 
+                        @if($request->status === 'Rejected')
+                        class="text-danger"
+                        @elseif($request->status === 'Approved')
+                        class="text-success"
+                        @endif
+                         >{{ $request->status }}</td>
+                        <td>{{ $request->created_at }}</td>
+                        <td>{{ $request->updated_at }}</td>
                         <td class="ml-auto">
-                            <button type="button" class="btn btn-danger btn-sm mr-2" onclick="handleDelete({{ $product }})">Deactivate</button>
-                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-secondary" >Edit</a>
+                            <a href="{{ route('quotations.edit', $request) }}" class="btn btn-sm btn-outline-primary" >View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -71,7 +73,7 @@
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-          $('#productTable').DataTable();
+          $('#requestTable').DataTable();
     });
 </script>
 
