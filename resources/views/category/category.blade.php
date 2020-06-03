@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div>
         <table class="table table-bordered" id="categoryTable" width="100%" cellspacing="0">
             <thead>
                 <tr>

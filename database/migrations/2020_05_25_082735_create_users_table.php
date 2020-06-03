@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->enum('gender', ['Male', 'Female', 'Others']);
             $table->enum('role', ['customer', 'staff', 'admin'])->default('admin');
-            $table->enum('status', ['Approved', 'Pending'])->default('Pending');
-            $table->string('document');
+            $table->enum('status', ['Approved', 'Pending', 'Rejected'])->default('Pending');
+            $table->string('document')->nullable();
             $table->string('password');
             $table->timestamps();
         });

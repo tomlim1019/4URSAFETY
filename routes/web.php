@@ -34,3 +34,13 @@ Route::resource('products', 'ProductsController');
 Route::resource('quotations', 'QuotationsController');
 
 Route::resource('logs', 'PurchaseLogsController');
+
+Route::get('/customer', 'UsersController@customerIndex')->name('customer');
+
+Route::get('/staff', 'UsersController@staffIndex')->name('staff');
+
+Route::get('/customer/{user}/edit', 'UsersController@editCustomer')->name('customer.edit');
+
+Route::get('/staff/{user}/edit', 'UsersController@editStaff')->name('staff.edit');
+
+Route::post('/staff', 'UsersController@createStaff')->name('register.staff');

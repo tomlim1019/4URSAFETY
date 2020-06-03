@@ -15,6 +15,8 @@ class CreatePurchaseLogsTable extends Migration
     {
         Schema::create('purchase_logs', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }

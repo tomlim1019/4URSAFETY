@@ -3,37 +3,41 @@
 @section('content')
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Requests</h1>
+        <h1 class="h2">Customer List</h1>
     </div>
 
     <div>
         <table class="table table-bordered" id="requestTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>User Email</th>
-                    <th>Product Title</th>
-                    <th>status</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Identification No.</th>
+                    <th>Gender</th>
+                    <th>Status</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($quotations as $quotation)
+                @foreach($customers as $customer)
                     <tr>
-                        <td>{{ $quotation->user->email }}</td>
-                        <td>{{ $quotation->product->title }}</td>
+                        <td>{{ $customer->email }}</td>
+                        <td>{{ $customer->name }}</td>
+                        <td>{{ $customer->id_no }}</td>
+                        <td>{{ $customer->gender }}</td>
                         <td 
-                        @if($quotation->status === 'Rejected')
+                        @if($customer->status === 'Rejected')
                         class="text-danger"
-                        @elseif($quotation->status === 'Approved')
+                        @elseif($customer->status === 'Approved')
                         class="text-success"
                         @endif
-                         >{{ $quotation->status }}</td>
-                        <td>{{ $quotation->created_at }}</td>
-                        <td>{{ $quotation->updated_at }}</td>
+                         >{{ $customer->status }}</td>
+                        <td>{{ $customer->created_at }}</td>
+                        <td>{{ $customer->updated_at }}</td>
                         <td class="ml-auto">
-                            <a href="{{ route('quotations.edit', $quotation) }}" class="btn btn-sm btn-outline-primary" >View</a>
+                            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-sm btn-outline-primary" >View</a>
                         </td>
                     </tr>
                 @endforeach

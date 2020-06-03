@@ -56,7 +56,6 @@ class RegisterController extends Controller
             'gender' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'birthdate' => ['required', 'date'],
-            'idcard' => ['required', 'file']
         ]);
     }
 
@@ -68,13 +67,13 @@ class RegisterController extends Controller
      */
     protected function create($data)
     {
-        //dd($data);
         $file = $data['idcard']->store('idcard');
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'id_no' => $data['id_no'],
+            'gender' => $data['gender'],
             'password' => Hash::make($data['password']),
             'birthdate' => $data['birthdate'],
             'document' => $file

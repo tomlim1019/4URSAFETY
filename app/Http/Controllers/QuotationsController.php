@@ -21,7 +21,7 @@ class QuotationsController extends Controller
     {
         $quotations = Quotation::all();
 
-        return view('request.request')->with('requests', $quotations);
+        return view('request.request')->with('quotations', $quotations);
     }
 
     /**

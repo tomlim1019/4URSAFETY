@@ -3,37 +3,29 @@
 @section('content')
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Requests</h1>
+        <h1 class="h2">Purchase Logs</h1>
     </div>
 
     <div>
-        <table class="table table-bordered" id="requestTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="logsTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>User Email</th>
                     <th>Product Title</th>
-                    <th>status</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($quotations as $quotation)
+                @foreach($logs as $log)
                     <tr>
-                        <td>{{ $quotation->user->email }}</td>
-                        <td>{{ $quotation->product->title }}</td>
-                        <td 
-                        @if($quotation->status === 'Rejected')
-                        class="text-danger"
-                        @elseif($quotation->status === 'Approved')
-                        class="text-success"
-                        @endif
-                         >{{ $quotation->status }}</td>
-                        <td>{{ $quotation->created_at }}</td>
-                        <td>{{ $quotation->updated_at }}</td>
+                        <td>{{ $log->user->email }}</td>
+                        <td>{{ $log->product->title }}</td>
+                        <td>{{ $log->created_at }}</td>
+                        <td>{{ $log->updated_at }}</td>
                         <td class="ml-auto">
-                            <a href="{{ route('quotations.edit', $quotation) }}" class="btn btn-sm btn-outline-primary" >View</a>
+                            <a href="{{ route('logs.edit', $log) }}" class="btn btn-sm btn-outline-primary" >View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -73,7 +65,7 @@
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-          $('#requestTable').DataTable();
+          $('#logsTable').DataTable();
     });
 </script>
 

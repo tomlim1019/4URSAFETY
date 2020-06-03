@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\PurchaseLog;
+
+use App\User;
+
+use App\Product;
+
 use Illuminate\Http\Request;
 
 class PurchaseLogsController extends Controller
@@ -13,7 +19,9 @@ class PurchaseLogsController extends Controller
      */
     public function index()
     {
-        //
+        $log = PurchaseLog::all();
+
+        return view('purchaselog.logs')->with('logs', $log);
     }
 
     /**
@@ -54,9 +62,12 @@ class PurchaseLogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PurchaseLog $log)
     {
-        //
+        $user = User::find($log->user_id);
+        $product = Product::find($log->product_id);
+
+        return view('purchaselog.view')->with('log', $log)->with('user', $user)->with('product', $product);
     }
 
     /**
