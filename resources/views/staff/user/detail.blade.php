@@ -65,7 +65,7 @@
         <label for="document" class="col-md-4 col-form-label text-md-right">{{ __('Document') }}</label>
 
         <div class="col-md-6">
-            <a href="{{ asset('/storage/'.$customer->document) }}" target="_blank" class="form-control">View</a>
+            <a href="{{ asset('/storage/'.$customer->document) }}" target="_blank" class="form-control">View Document</a>
         </div>
     </div>
 

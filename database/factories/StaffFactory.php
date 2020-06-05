@@ -15,6 +15,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => 'Admin',
         'id_no' => 1234567890,
         'birthdate' => '2020-02-02',
+        'role' => 'admin',
         'gender' => 'Others',
         'status' => 'Approved',
         'document' => NULL,
