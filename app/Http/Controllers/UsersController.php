@@ -49,8 +49,43 @@ class UsersController extends Controller
         return view('user.detail')->with('customer', $user);
     }
 
-    public function editStaff(User $user)
+    public function customerApproval(Request $request, User $user)
     {
-        return view('user.detail')->with('staff', $user);
+        $user->update([
+            'status' => $request->status
+          ]);
+  
+          session()->flash('success', 'Customer '.$user->status.' successfully.');
+  
+          return redirect(route('customer'));
+    }
+
+    public function editStaffRole(Request $request, User $user)
+    {
+        $user->update([
+            'role' => $request->role
+          ]);
+  
+          session()->flash('success', 'Staff updated successfully.');
+  
+          return redirect(route('staff'));
+    }
+
+    public function deleteStaff(User $user)
+    {
+        $user->delete();
+
+        session()->flash('success', 'Staff deleted successfully.');
+
+        return redirect(route('staff'));
+    }
+
+    public function deleteCustomer(User $user)
+    {
+        $user->delete();
+
+        session()->flash('success', 'Customer deleted successfully.');
+
+        return redirect(route('customer'));
     }
 }

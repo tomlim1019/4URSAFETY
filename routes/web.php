@@ -44,3 +44,11 @@ Route::get('/customer/{user}/edit', 'UsersController@editCustomer')->name('custo
 Route::get('/staff/{user}/edit', 'UsersController@editStaff')->name('staff.edit');
 
 Route::post('/staff', 'UsersController@createStaff')->name('register.staff');
+
+Route::put('/staff/{user}', 'UsersController@editStaffRole');
+
+Route::delete('/staff/{user}', 'UsersController@deleteStaff');
+
+Route::put('/customer/{user}', 'UsersController@customerApproval');
+
+Route::delete('/customer/{user}', 'UsersController@deleteCustomer');

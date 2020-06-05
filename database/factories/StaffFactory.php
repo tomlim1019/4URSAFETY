@@ -3,14 +3,20 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Model;
+
+use Illuminate\Support\Facades\Hash;
+
 use Faker\Generator as Faker;
 
-$factory->define(App\Staff::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
     return [
-        'username' => $faker->unique()->userName,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'name' => $faker->name,
-        'user_type' => 'admin'
+        'email' => 'admin@test.com',
+        'password' => Hash::make('admin123'), // password
+        'name' => 'Admin',
+        'id_no' => 1234567890,
+        'birthdate' => '2020-02-02',
+        'gender' => 'Others',
+        'status' => 'Approved',
+        'document' => NULL,
     ];
 });

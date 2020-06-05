@@ -40,8 +40,16 @@
                         <td>{{ $staff->created_at }}</td>
                         <td>{{ $staff->updated_at }}</td>
                         <td>
-                            <a href="{{ route('staff.edit', $staff->id) }}" class="btn btn-sm btn-outline-primary mr-2" >Delete</a>
-                            <a href="{{ route('staff.edit', $staff->id) }}" class="btn btn-sm btn-outline-primary" >Make Admin</a>
+                        @if($staff->id != 1)
+                                <button type="button" class="btn btn-outline-danger btn-sm mr-2" onclick="handleDelete({{ $staff }})">Delete</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="handleEdit({{ $staff }})">
+                                    @if($staff->role == 'admin')
+                                    Remove Admin
+                                    @else 
+                                    Make Admin
+                                    @endif
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -97,6 +105,33 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staffModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="staffModalForm" method="POST" action="">
+                @csrf
+                <input id="form-method" type="hidden" name="_method" value="">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <p id="modalContent"></p>
+                            <input type="text" class="form-control" id="input_content" name="" value="" hidden>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="staffModalButton"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
@@ -109,6 +144,54 @@
     });
 </script>
 
+<script>
+    function handleEdit(user) {
+      var form = document.getElementById('staffModalForm')
+      form.action = '/staff/' + user.id
+
+      var formMethod = document.getElementById('form-method')
+      formMethod.value = 'PUT'
+
+      var title = document.getElementById('staffModalLabel')
+      user.role === 'admin' ? title.innerHTML = 'Remove Admin' : title.innerHTML = 'Make Admin'
+
+      var label = document.getElementById('modalContent')
+      user.role === 'admin' ? label.innerHTML = `Remove <b>${user.name} - ${user.email}</b> from admin?` 
+      : label.innerHTML = `Make <b>${user.name} - ${user.email}</b> admin?`
+      
+      var value = document.getElementById('input_content')
+      value.name = 'role'
+      user.role === 'admin' ? value.value = 'staff' : value.value = 'admin'
+
+      var button = document.getElementById('staffModalButton')
+      button.className = "btn btn-outline-primary"
+      button.innerHTML = "Update"
+
+      $('#staffModal').modal('show')
+    }
+</script>
+
+<script>
+    function handleDelete(user) {
+      var form = document.getElementById('staffModalForm')
+      form.action = '/staff/' + user.id
+
+      var formMethod = document.getElementById('form-method')
+      formMethod.value = 'DELETE'
+
+      var title = document.getElementById('staffModalLabel')
+      title.innerHTML = 'Delete User'
+
+      var label = document.getElementById('modalContent')
+      label.innerHTML = `Delete <b>${user.name} - ${user.email}</b>?`
+
+      var button = document.getElementById('staffModalButton')
+      button.className = "btn btn-outline-danger"
+      button.innerHTML = "Delete"
+
+      $('#staffModal').modal('show')
+    }
+</script>
 
 <script>
     flatpickr('#birth_date', {
