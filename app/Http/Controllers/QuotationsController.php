@@ -21,7 +21,7 @@ class QuotationsController extends Controller
     {
         $quotations = Quotation::all();
 
-        return view('request.request')->with('quotations', $quotations);
+        return view('staff.request.request')->with('quotations', $quotations);
     }
 
     /**
@@ -67,7 +67,7 @@ class QuotationsController extends Controller
         $user = User::find($quotation->user_id);
         $product = Product::find($quotation->product_id);
 
-        return view('request.view')->with('quotation', $quotation)->with('user', $user)->with('product', $product);
+        return view('staff.request.view')->with('quotation', $quotation)->with('user', $user)->with('product', $product);
     }
 
     /**

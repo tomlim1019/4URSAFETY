@@ -21,7 +21,7 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
 
-        return view('category.category')->with('categories', $categories);
+        return view('staff.category.category')->with('categories', $categories);
     }
 
     /**

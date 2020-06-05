@@ -14,14 +14,14 @@ class UsersController extends Controller
     {
         $users = User::where('role', 'customer')->get();
 
-        return view('user.customer')->with('customers', $users);
+        return view('staff.user.customer')->with('customers', $users);
     }
 
     public function staffIndex()
     {
         $users = User::whereIn('role', ['admin', 'staff'])->get();
 
-        return view('user.staff')->with('staffs', $users);
+        return view('staff.user.staff')->with('staffs', $users);
     }
 
     public function createStaff(Request $request)
@@ -46,7 +46,7 @@ class UsersController extends Controller
 
     public function editCustomer(User $user)
     {
-        return view('user.detail')->with('customer', $user);
+        return view('staff.user.detail')->with('customer', $user);
     }
 
     public function customerApproval(Request $request, User $user)

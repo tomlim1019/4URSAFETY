@@ -21,7 +21,7 @@ class PurchaseLogsController extends Controller
     {
         $log = PurchaseLog::all();
 
-        return view('purchaselog.logs')->with('logs', $log);
+        return view('staff.purchaselog.logs')->with('logs', $log);
     }
 
     /**
@@ -67,7 +67,7 @@ class PurchaseLogsController extends Controller
         $user = User::find($log->user_id);
         $product = Product::find($log->product_id);
 
-        return view('purchaselog.view')->with('log', $log)->with('user', $user)->with('product', $product);
+        return view('staff.purchaselog.view')->with('log', $log)->with('user', $user)->with('product', $product);
     }
 
     /**
