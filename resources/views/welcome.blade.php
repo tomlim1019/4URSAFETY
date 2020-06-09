@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    WELCOME TO 4URSAFETY
+                    WELCOME TO 4URSAFETY :D
                 </div>
 
                 <div class="links">
