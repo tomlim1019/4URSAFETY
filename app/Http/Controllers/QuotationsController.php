@@ -8,6 +8,8 @@ use App\User;
 
 use App\Quotation;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class QuotationsController extends Controller
@@ -22,6 +24,13 @@ class QuotationsController extends Controller
         $quotations = Quotation::all();
 
         return view('staff.request.request')->with('quotations', $quotations);
+    }
+
+    public function customerIndex()
+    {
+        $quotations = Quotation::where('user_id', Auth::user()->id)->get();
+
+        return view('customer.request.request')->with('quotations', $quotations);
     }
 
     /**
@@ -42,7 +51,14 @@ class QuotationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Quotation::create([
+            'user_id' => Auth::user()->id,
+            'product_id' => $request->product_id
+          ]);
+  
+        session()->flash('success', 'Purchase requested successfully.');
+
+        return redirect(route('customer.product'));
     }
 
     /**
@@ -51,9 +67,9 @@ class QuotationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Quotation $quotation)
     {
-        //
+        return view('customer.request.detail')->with('request', $quotation);
     }
 
     /**
@@ -96,8 +112,12 @@ class QuotationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quotation $quotation)
     {
-        //
+        $quotation->delete();
+
+        session()->flash('success', 'Request Deleted Successfully.');
+
+        return redirect(route('customer.request'));
     }
 }

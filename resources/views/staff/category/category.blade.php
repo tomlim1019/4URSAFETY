@@ -86,6 +86,7 @@
       label.innerHTML = `Category Name`
 
       var value = document.getElementById('input_name')
+      value.hidden = false
       value.value = `${category.name}`
 
       var button = document.getElementById('modal-button')
@@ -111,6 +112,7 @@
       label.innerHTML = `Category Name`
 
       var value = document.getElementById('input_name')
+      value.hidden = false
       value.value = ""
 
       var button = document.getElementById('modal-button')
@@ -136,7 +138,7 @@
       label.innerHTML = `Please enter DELETE to delete category <b>${category.name}</b>`
 
       var value = document.getElementById('input_name')
-      value.value = ""
+      value.hidden = true
 
       var button = document.getElementById('modal-button')
       button.className = "btn btn-outline-danger"

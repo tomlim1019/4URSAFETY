@@ -6,6 +6,8 @@ use \App\Product;
 
 use \App\Category;
 
+use Illuminate\Support\Facades\Auth;
+
 use \App\Http\Requests\Products\CreateProductRequest;
 
 use \App\Http\Requests\Products\UpdateProductRequest;
@@ -27,7 +29,15 @@ class ProductsController extends Controller
             $product->product_id += $product->id+10000;
         }
 
-        return view('product.product')->with('products', $products);
+        return view('staff.product.product')->with('products', $products);
+    }
+
+    public function customerIndex()
+    {
+        $categories = Category::all();
+        $products = Product::all();
+
+        return view('customer.product.product')->with('products', $products)->with('categories', $categories);
     }
 
     /**
@@ -39,7 +49,7 @@ class ProductsController extends Controller
     {
         $categories = Category::all();
 
-        return view('product.create')->with('categories', $categories);
+        return view('staff.product.create')->with('categories', $categories);
     }
 
     /**
@@ -77,9 +87,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('customer.product.detail')->with('product', $product);
     }
 
     /**
@@ -92,7 +102,7 @@ class ProductsController extends Controller
     {
         $categories=Category::all();
 
-        return view('product.create')->with('product', $product)->with('categories', $categories);
+        return view('staff.product.create')->with('product', $product)->with('categories', $categories);
     }
 
     /**

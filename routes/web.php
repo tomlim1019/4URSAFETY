@@ -52,3 +52,9 @@ Route::delete('/staff/{user}', 'UsersController@deleteStaff');
 Route::put('/customer/{user}', 'UsersController@customerApproval');
 
 Route::delete('/customer/{user}', 'UsersController@deleteCustomer');
+
+Route::get('/product', 'ProductsController@customerIndex')->name('customer.product');
+
+Route::get('/request', 'QuotationsController@customerIndex')->name('customer.request');
+
+Route::get('/myproduct', 'PurchaseLogsController@customerIndex')->name('customer.log');

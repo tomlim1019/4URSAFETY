@@ -88,24 +88,39 @@
                                 Dashboard <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+                            @if(Auth::user()->role=='admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('categories.index') }}">
                                 <span data-feather="file"></span>
                                 Categories
                                 </a>
                             </li>
+                            @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.index') }}">
+                                <a class="nav-link" href="{{ Auth::user()->role=='customer' ? route('customer.product') : route('products.index') }}">
                                 <span data-feather="file"></span>
-                                Products
+                                Product
                                 </a>
                             </li>
+                            @if(Auth::user()->role=='customer')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('quotations.index') }}">
-                                <span data-feather="shopping-cart"></span>
-                                Request
+                                <a class="nav-link" href="{{ route('customer.log') }}">
+                                <span data-feather="file"></span>
+                                My Product
                                 </a>
                             </li>
+                            @endif
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ Auth::user()->role=='customer' ? route('customer.request') : route('quotations.index') }}">
+                                <span data-feather="shopping-cart"></span>
+                                @if(Auth::user()->role=='admin')
+                                Request
+                                @else
+                                My Request
+                                @endif
+                                </a>
+                            </li>
+                            @if(Auth::user()->role=='admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logs.index') }}">
                                 <span data-feather="users"></span>
@@ -130,6 +145,7 @@
                                 Staff <span class="sr-only">(current)</span>
                                 </a>
                             </li>
+                            @endif
                             </ul>
                     </div>
                 </nav>

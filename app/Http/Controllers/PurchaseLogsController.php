@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\PurchaseLog;
 
+use App\Quotation;
+
 use App\User;
 
 use App\Product;
+
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -19,9 +23,16 @@ class PurchaseLogsController extends Controller
      */
     public function index()
     {
-        $log = PurchaseLog::all();
+        $logs = PurchaseLog::all();
 
-        return view('staff.purchaselog.logs')->with('logs', $log);
+        return view('staff.purchaselog.logs')->with('logs', $logs);
+    }
+
+    public function customerIndex()
+    {
+        $logs = PurchaseLog::where('user_id', Auth::user()->id)->get();
+
+        return view('customer.product.myProduct')->with('logs', $logs);
     }
 
     /**
@@ -42,7 +53,16 @@ class PurchaseLogsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Quotation::where('id', $request->request_id)->delete();
+
+        PurchaseLog::create([
+            'user_id' => Auth::user()->id,
+            'product_id' => $request->product_id
+          ]);
+  
+        session()->flash('success', 'Product Purchase successfully.');
+
+        return redirect(route('customer.request'));
     }
 
     /**
@@ -51,9 +71,9 @@ class PurchaseLogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PurchaseLog $log)
     {
-        //
+        return view('customer.product.myProductDetail')->with('log', $log);
     }
 
     /**

@@ -5,7 +5,8 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Products</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-secondary" >Add Product</a>
+            <a href="{{ route('customer.product') }}" class="btn btn-sm btn-outline-secondary" >Preview Product</a>
+            <a href="{{ route('products.create') }}" class="btn btn-sm btn-outline-secondary ml-2" >Add Product</a>
         </div>
     </div>
 
