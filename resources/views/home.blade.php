@@ -146,3 +146,9 @@
         </table>
       </div>
 @endsection
+
+@section('css')
+<style>
+   .btn-outline-secondary { color: #FF0000; }
+</style>
+@endsection
