@@ -2,6 +2,7 @@
 
 @section('content')
 
+<div class="myCard">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Customer List</h1>
     </div>
@@ -37,7 +38,7 @@
                         <td>{{ $customer->created_at }}</td>
                         <td>{{ $customer->updated_at }}</td>
                         <td class="ml-auto">
-                            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-sm btn-outline-primary" >View</a>
+                            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-sm btn-primary" >View</a>
                         </td>
                     </tr>
                 @endforeach
@@ -70,6 +71,7 @@
       </form>
     </div>
   </div>
+</div>
 </div>
 @endsection
 

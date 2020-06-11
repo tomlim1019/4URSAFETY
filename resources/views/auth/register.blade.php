@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class = "myContainer">
             <div class="card">
                 <div class="card-header font-weight-bold">{{ __('Create A New Account') }}</div>
 
@@ -148,4 +148,24 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+
+    <style>
+        .myContainer{
+            width: 100%;
+            padding: 30px 25px 30px 25px;
+            margin-left: 55px;
+        }
+
+        .card{
+            position: relative;
+            border-radius: 0.25rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .card-header{
+            background-color: #0C2340;
+            color:white;
+            opacity:0.85;
+        }
+    </style>
 @endsection
