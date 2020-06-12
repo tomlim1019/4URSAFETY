@@ -23,6 +23,6 @@
         </div>
         <a href=" {{ route('logs.show', $log->id) }}" class="stretched-link"></a>
     </div>
-</div>
     @endforeach
+</div>
 @endsection

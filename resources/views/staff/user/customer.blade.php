@@ -38,7 +38,7 @@
                         <td>{{ $customer->created_at }}</td>
                         <td>{{ $customer->updated_at }}</td>
                         <td class="ml-auto">
-                            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-sm btn-primary" >View</a>
+                            <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-sm btn-outline-secondary" >View</a>
                         </td>
                     </tr>
                 @endforeach

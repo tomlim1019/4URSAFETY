@@ -43,7 +43,7 @@
                         <td>
                         @if($staff->id != 1)
                                 <button type="button" class="btn btn-outline-danger btn-sm mr-2" onclick="handleDelete({{ $staff }})">Delete</button>
-                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="handleEdit({{ $staff }})">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="handleEdit({{ $staff }})">
                                     @if($staff->role == 'admin')
                                     Remove Admin
                                     @else 
@@ -100,7 +100,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="modal-button">Create</button>
+                        <button type="submit" class="btn btn-outline-primary" id="modal-button">Create</button>
                     </div>
                 </form>
             </div>

@@ -40,24 +40,43 @@
             color: #1d68a7;
         }
 
-        .btn {
+        /* .btn {
             color: #0C2340;
-            border: 1px solid #0C2340;
             opacity:0.85;
         }
 
         .btn:hover{
             background-color:  #0C2340;
             opacity:0.85;
-        }
+        } */
 
-        .btn-primary{
-            background-color: white;
+        .btn-outline-primary{
+            border-color: #0066ff;
+            color: #0066ff	;
         }
         
-        .btn-primary:hover{
+        .btn-outline-primary:hover{
+            background-color: #0066ff	;
+            border-color: #0066ff	;
+        }
+
+        .btn-outline-secondary{
+            border-color: #0C2340;
+            color: #0C2340;
+        }
+        
+        .btn-outline-secondary:hover{
             background-color: #0C2340;
             border-color: #0C2340;
+        }
+
+        .btn-outline-danger{
+            border-color: #FF0000;
+            color: #FF0000;
+        }
+
+        .btn-outline-danger:hover{
+            background-color: #FF0000;
         }
 
         .btn-link:hover{
@@ -72,7 +91,9 @@
             background-color: white;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         }   
-
+        .text-big{
+            font-size: 1.25rem;
+        }
     </style>
 </head>
 <body>
@@ -136,7 +157,7 @@
             @auth
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar text-big">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                         <li class="nav-item">

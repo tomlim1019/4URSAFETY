@@ -22,6 +22,6 @@
         </div>
         <a href="{{ route('quotations.show', $request->id) }}" class="stretched-link"></a>
     </div>
-</div>
     @endforeach
+</div>
 @endsection

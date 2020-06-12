@@ -27,8 +27,8 @@
                         <td>{{ $category->created_at }}</td>
                         <td>{{ $category->updated_at }}</td>
                         <td class="ml-auto">
-                            <button type="button" class="btn btn-danger btn-sm mr-2" onclick="handleDelete({{ $category }})">Delete</button>
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="handleEdit({{ $category }})">Edit</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm mr-2" onclick="handleDelete({{ $category }})">Delete</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="handleEdit({{ $category }})">Edit</button>
                         </td>
                     </tr>
                 @endforeach
@@ -153,5 +153,9 @@
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.21/datatables.min.css"/>
-
+<style>
+.btn {
+        color: #FFFFFF;
+}
+</style>
 @endsection

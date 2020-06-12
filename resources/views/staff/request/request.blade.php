@@ -34,7 +34,7 @@
                         <td>{{ $quotation->created_at }}</td>
                         <td>{{ $quotation->updated_at }}</td>
                         <td class="ml-auto">
-                            <a href="{{ route('quotations.edit', $quotation) }}" class="btn btn-sm btn-outline-primary" >View</a>
+                            <a href="{{ route('quotations.edit', $quotation) }}" class="btn btn-sm btn-outline-secondary" >View</a>
                         </td>
                     </tr>
                 @endforeach

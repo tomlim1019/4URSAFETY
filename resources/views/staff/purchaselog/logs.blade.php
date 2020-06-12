@@ -26,7 +26,7 @@
                         <td>{{ $log->created_at }}</td>
                         <td>{{ $log->updated_at }}</td>
                         <td class="ml-auto">
-                            <a href="{{ route('logs.edit', $log) }}" class="btn btn-sm btn-outline-primary" >View</a>
+                            <a href="{{ route('logs.edit', $log) }}" class="btn btn-sm btn-outline-secondary" >View</a>
                         </td>
                     </tr>
                 @endforeach

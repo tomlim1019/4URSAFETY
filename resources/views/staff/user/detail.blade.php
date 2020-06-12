@@ -6,10 +6,10 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">{{ 'Customer Details'}}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            <button type="button" class="btn btn-sm btn-outline-secondary mr-2" onclick="handleEdit({{ $customer }}, true)">Approve</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary mr-2" onclick="handleEdit({{ $customer }}, false)">Reject</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary mr-2" onclick="handleDelete({{ $customer }})">Delete</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Reset Password</button>
+            <button type="button" class="btn btn-sm btn-outline-primary mr-2" onclick="handleEdit({{ $customer }}, true)">Approve</button>
+            <button type="button" class="btn btn-sm btn-outline-danger mr-2" onclick="handleEdit({{ $customer }}, false)">Reject</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary mr-2">Reset Password</button>
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete({{ $customer }})">Delete</button>
         </div>
     </div>
 

@@ -31,7 +31,7 @@
                         <td>{{ $product->tenure }}</td>
                         <td>{{ $product->category->name }}</td>
                         <td class="ml-auto">
-                            <button type="button" class="btn btn-danger btn-sm mr-2" onclick="handleDelete({{ $product }})">Deactivate</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm mr-2" onclick="handleDelete({{ $product }})">Deactivate</button>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-secondary" >Edit</a>
                         </td>
                     </tr>
