@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class = "myContainer">
             <div class="card">
                 <div class="card-header font-weight-bold">{{ __('Sign in to 4URSAFETY') }}</div>
 
@@ -69,4 +69,26 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('css')
+<style>
+    .myContainer{
+        width: 100%;
+        padding: 55px 25px 25px 25px;
+        margin-left:55px;
+    }
+
+    .card{
+        position: relative;
+        border-radius: 0.25rem;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+
+    .card-header{
+        background-color: #0C2340;
+        color:white;
+        opacity:0.85;
+    }
+</style>
 @endsection
