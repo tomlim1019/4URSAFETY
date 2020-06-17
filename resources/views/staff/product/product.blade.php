@@ -18,6 +18,7 @@
                     <th>Title</th>
                     <th>Price</th>
                     <th>Tenure</th>
+                    <th>Status</th>
                     <th>Category</th>
                     <th></th>
                 </tr>
@@ -29,9 +30,20 @@
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->tenure }}</td>
+                        <td
+                        @if($product->status === 'Active')
+                        class="text-success"
+                        @else
+                        class="text-danger"
+                        @endif
+                        >{{ $product->status }}</td>
                         <td>{{ $product->category->name }}</td>
                         <td class="ml-auto">
+                            @if($product->status === 'Active')
                             <button type="button" class="btn btn-outline-danger btn-sm mr-2" onclick="handleDelete({{ $product }})">Deactivate</button>
+                            @else
+                            <button type="button" class="btn btn-outline-primary btn-sm mr-2" onclick="handleDelete({{ $product }})">Activate</button>
+                            @endif 
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-outline-secondary" >Edit</a>
                         </td>
                     </tr>
@@ -51,16 +63,15 @@
       </div>
       <form id="deleteModalForm" method="POST" action="">
       @csrf
-      @method('DELETE')
-      <input id="form-method" type="hidden" name="_method" value="">
+      @method('PUT')
         <div class="modal-body">
             <div class="form-group">
-                <p>Are you sure you want to delete this product?</p>
+                <p id="description">Are you sure you want to delete this product?</p>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-danger" id="modal-button">Delete</button>
+            <button type="submit" class="btn btn-danger" id="modal-button"></button>
         </div>
       </form>
     </div>
@@ -81,7 +92,19 @@
 <script>
     function handleDelete(product) {
       var form = document.getElementById('deleteModalForm')
-      form.action = '/products/' + product.id
+      form.action = '/products/' + product.id + '/status'
+
+      var label = document.getElementById('deleteModalLabel')
+      product.status == 'Active' ? label.innerHTML = 'Deactivate Product' : label.innerHTML = 'Activate Product'
+
+      var des = document.getElementById('description')
+      product.status == 'Active' ? 
+      des.innerHTML = 'Are you sure you want to deactivate this product' : 
+      des.innerHTML = 'Are you sure you want to activate this product'
+
+      var button = document.getElementById('modal-button')
+      product.status == 'Active' ? button.className = 'btn btn-danger' : button.className = 'btn btn-primary'
+      product.status == 'Active' ? button.innerHTML = 'Deactivate' : button.innerHTML = 'Activate'
 
       $('#deleteModal').modal('show')
     }

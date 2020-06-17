@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('id_no')->unique();
             $table->date('birthdate');
+            $table->string('image')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Others']);
             $table->enum('role', ['customer', 'staff', 'admin'])->default('admin');
             $table->enum('status', ['Approved', 'Pending', 'Rejected'])->default('Pending');

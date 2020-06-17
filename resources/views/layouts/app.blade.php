@@ -40,16 +40,6 @@
             color: #1d68a7;
         }
 
-        /* .btn {
-            color: #0C2340;
-            opacity:0.85;
-        }
-
-        .btn:hover{
-            background-color:  #0C2340;
-            opacity:0.85;
-        } */
-
         .btn-outline-primary{
             border-color: #0066ff;
             color: #0066ff	;
@@ -180,6 +170,7 @@
                             Product
                             </a>
                         </li>
+                        @if(Auth::user()->status == 'Approved')
                         @if(Auth::user()->role=='customer')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('customer.log') }}">
@@ -206,7 +197,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('staff.report') }}">
                             <span data-feather="bar-chart-2"></span>
                             Reports
                             </a>
@@ -224,6 +215,7 @@
                             </a>
                         </li>
                         @endif
+                        @endif
                         </ul>
                     </div>
                 </nav>
@@ -232,6 +224,10 @@
                 @if(session()->has('success'))
                 <div class="alert alert-success">
                     {{ session()->get('success') }}
+                </div>
+                @elseif(session()->has('danger'))
+                <div class="alert alert-danger">
+                    {{ session()->get('danger') }}
                 </div>
                 @endif
                 @if(session()->has('error'))

@@ -8,12 +8,11 @@
         <div class="btn-toolbar mb-2 mb-md-0">
             <button type="button" class="btn btn-sm btn-outline-primary mr-2" onclick="handleEdit({{ $customer }}, true)">Approve</button>
             <button type="button" class="btn btn-sm btn-outline-danger mr-2" onclick="handleEdit({{ $customer }}, false)">Reject</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary mr-2">Reset Password</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary mr-2" onclick="handleReset({{ $customer }})">Reset Password</button>
             <button type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete({{ $customer }})">Delete</button>
         </div>
     </div>
 
-    
     <img src="https://via.placeholder.com/150" class="mx-auto d-block pb-4">
 
     <div class="row">
@@ -146,6 +145,28 @@
       var button = document.getElementById('customerModalButton')
       button.className = "btn btn-outline-danger"
       button.innerHTML = "Delete"
+
+      $('#customerModal').modal('show')
+    }
+</script>
+
+<script>
+    function handleReset(user) {
+      var form = document.getElementById('customerModalForm')
+      form.action = '/customer/password/' + user.id
+
+      var formMethod = document.getElementById('form-method')
+      formMethod.value = 'PUT'
+
+      var title = document.getElementById('customerModalLabel')
+      title.innerHTML = 'Reset Password'
+
+      var label = document.getElementById('modalContent')
+      label.innerHTML = `Reset Password for <b>${user.name} - ${user.email}</b>?`
+
+      var button = document.getElementById('customerModalButton')
+      button.className = "btn btn-outline-danger"
+      button.innerHTML = "Reset"
 
       $('#customerModal').modal('show')
     }

@@ -75,7 +75,7 @@
 
             @if(isset($product))
                 <div class="form-group">
-                    <img src="{{ asset($product->image) }}" alt="" style="width: 100%">
+                    <img src="{{ asset('/storage/'.$product->image) }}" alt="" style="width: 100%">
                 </div>
             @endif
 
@@ -103,7 +103,7 @@
             </div>
 
             <div class="form-group text-right">
-                <button type="submit" class="btn btn-outline-primary">Create Product</button>
+                <button type="submit" class="btn btn-outline-primary">{{ isset($product) ? 'Update Product' : 'Create Product' }}</button>
             </div>
         </form>
     </div>

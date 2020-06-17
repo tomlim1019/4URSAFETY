@@ -88,4 +88,18 @@ class UsersController extends Controller
 
         return redirect(route('customer'));
     }
+
+    public function resetPassword(User $user)
+    {
+        $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
+        $password = substr($random, 0, 10);
+
+        $user->update([
+            'password' => Hash::make($password)
+        ]);
+
+        session()->flash('success', 'Customer new password is '.$password);
+
+        return redirect(route('customer.edit', $user->id));
+    }
 }

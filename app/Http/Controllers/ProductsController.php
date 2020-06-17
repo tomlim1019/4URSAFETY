@@ -6,6 +6,8 @@ use \App\Product;
 
 use \App\Category;
 
+use Illuminate\Support\Facades\File;
+
 use Illuminate\Support\Facades\Auth;
 
 use \App\Http\Requests\Products\CreateProductRequest;
@@ -35,7 +37,7 @@ class ProductsController extends Controller
     public function customerIndex()
     {
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::where('status', '=', 'Active')->get();
 
         return view('customer.product.product')->with('products', $products)->with('categories', $categories);
     }
@@ -62,9 +64,9 @@ class ProductsController extends Controller
     {
         $price = NULL;
         if($request->price) $price = $request->price; 
-        // upload the image to storage
-        $image = $request->image->store('products');
-        // create the post
+
+        $image = $request->image->store('product');
+
         $product = Product::create([
           'title' => $request->title,
           'description' => $request->description,
@@ -116,23 +118,51 @@ class ProductsController extends Controller
     {
         $data = $request->only(['title', 'description', 'price', 'tenure']);
         // check if new image
-        if ($request->hasFile('image')) {
-          // uplload it
-          $image = $request->image->store('products');
-          // delete old one
-          //$product->deleteImage();
+        $image = "storage/".$product->image;
 
-          $data['image'] = $image;
+        if (File::exists($image) && $request->image) {
+            // delete old one
+            File::delete($image);
+            // upload it
+            $image = $request->image->store('product');
+            $data['image'] = $image;
+        }
+        else {
+            $image = $request->image->store('product');
+            $data['image'] = $image;
         }
 
         // update attributes
-        $products->update($data);
+        $product->update($data);
 
         // flash message
-        session()->flash('success', 'Post updated successfully.');
+        session()->flash('success', 'Product updated successfully.');
 
         // redirect user
-        return redirect(route('product.index'));
+        return redirect(route('products.index'));
+    }
+
+    public function updateStatus(Product $product)
+    {
+        $status = $product->status;
+
+        if($status == "Active"){
+            $product->update([
+                'status' => 'Inactive'
+            ]);
+
+            session()->flash('success', 'Product updated successfully.');
+
+            return redirect(route('products.index'));
+        }
+
+        $product->update([
+            'status' => 'Active'
+        ]);
+
+        session()->flash('success', 'Product updated successfully.');
+
+        return redirect(route('products.index'));
     }
 
     /**

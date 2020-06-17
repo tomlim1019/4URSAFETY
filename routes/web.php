@@ -23,8 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
-Route::get('/profile/edit', 'HomeController@editprofile')->name('editprofile');
-
 Route::post('/test', 'HomeController@test')->name('test');
 
 Route::resource('categories', 'CategoriesController');
@@ -58,3 +56,17 @@ Route::get('/product', 'ProductsController@customerIndex')->name('customer.produ
 Route::get('/request', 'QuotationsController@customerIndex')->name('customer.request');
 
 Route::get('/myproduct', 'PurchaseLogsController@customerIndex')->name('customer.log');
+
+Route::get('/report', 'ReportController@index')->name('staff.report');
+
+Route::put('/profile/picture/{user}', 'HomeController@uploadPicture')->name('upload.picture');
+
+Route::put('/password/{user}', 'HomeController@resetPassword');
+
+Route::put('/products/{product}/status', 'ProductsController@updateStatus')->name('product.status');
+
+Route::put('/customer/password/{user}', 'UsersController@resetPassword');
+
+Route::put('/profile/document/{user}', 'HomeController@uploadDocument')->name('upload.document');
+
+Route::put('/profile/request/{user}', 'HomeController@submitApproval');

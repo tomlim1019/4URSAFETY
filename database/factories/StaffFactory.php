@@ -19,5 +19,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'gender' => 'Others',
         'status' => 'Approved',
         'document' => NULL,
+        'image' => NULL,
     ];
 });

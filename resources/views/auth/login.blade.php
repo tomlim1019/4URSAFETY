@@ -90,5 +90,10 @@
         color:white;
         opacity:0.85;
     }
+    
+    .btn:hover{
+        color:  #0C2340;
+        opacity:0.85;
+    }
 </style>
 @endsection

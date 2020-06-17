@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->decimal('price')->nullable();
+            $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->integer('tenure');
             $table->integer('category_id');
             $table->string('image');
