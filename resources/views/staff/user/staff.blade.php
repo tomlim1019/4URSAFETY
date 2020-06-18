@@ -83,7 +83,7 @@
                             <input type="text" class="form-control" name="id_no">
                         </div>
                         <div class="form-group">
-                            <label for="password_confirmation" class="col-form-label">Birhtdate</label>
+                            <label for="password_confirmation" class="col-form-label">Birthdate</label>
                             <input id="birth_date" type="text" class="form-control" name="birthdate">
                         </div>
                         <div class="form-group">
@@ -99,7 +99,6 @@
                         <input name="role" value="staff" hidden>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-outline-primary" id="modal-button">Create</button>
                     </div>
                 </form>
