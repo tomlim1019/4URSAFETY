@@ -98,8 +98,7 @@
                 <input type="file" class="form-control" id="input_name" name="image" required>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <div class="modal-footer">            
             <button type="submit" class="btn btn-outline-primary" id="modal-button">Upload</button>
         </div>
       </form>
@@ -134,7 +133,6 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-outline-primary" id="modal-button">Reset</button>
         </div>
       </form>

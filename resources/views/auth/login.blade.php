@@ -54,7 +54,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btnLink" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
@@ -86,14 +86,17 @@
     }
 
     .card-header{
-        background-color: #0C2340;
+        background-color: rgb(53,74,95);
         color:white;
         opacity:0.85;
     }
-    
-    .btn:hover{
-        color:  #0C2340;
-        opacity:0.85;
+
+    .btnLink{
+        color: blue;
+    }
+    .btnLink:hover{
+        text-decoration:none;
+        color: rgb(53,74,95);
     }
 </style>
 @endsection

@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;450&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -19,16 +20,15 @@
     @yield('css')
     <style>
         .bg-light{
-            background-color: #0C2340 !important;
-            padding-top:20px;
-            padding-left:30px;
+            background-color: rgb(42,63,84) !important;
+            width: 13rem;
             min-height: calc(100vh - 59px);
             opacity: 0.95;            
         }
 
         .container-fluid{
             width: 100%;
-            padding-left: 0;
+            padding-left: 10;
             padding-top:3px;
         }
 
@@ -37,7 +37,8 @@
         }
 
         .sidebar a:hover{
-            color: #1d68a7;
+            background-color: rgb(53,74,95);  
+            color: white;                     
         }
 
         .btn-outline-primary{
@@ -51,13 +52,13 @@
         }
 
         .btn-outline-secondary{
-            border-color: #0C2340;
-            color: #0C2340;
+            border-color: rgb(53,74,95);
+            color: rgb(53,74,95);
         }
         
         .btn-outline-secondary:hover{
-            background-color: #0C2340;
-            border-color: #0C2340;
+            background-color: rgb(53,74,95);
+            border-color: rgb(53,74,95);
         }
 
         .btn-outline-danger{
@@ -82,8 +83,26 @@
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         }   
         .text-big{
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
+
+        .nav-link{
+            font-family:'Raleway', sans-serif;
+        }
+
+        .title{
+            padding:0.55rem 0.1rem 0.1rem 0.1rem;
+            color: #589ABF;
+            opacity:0.9;
+            margin-left: 1rem;
+        }
+
+        .myCard5{
+            padding: 2rem 1rem 1rem 1rem;
+            margin: 1.2rem 1rem 0.2rem 1rem;
+            border: 1px solid lightgray;
+        }
+
     </style>
 </head>
 <body>
@@ -147,7 +166,7 @@
             @auth
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar text-big">
+                    <nav id="sidebarMenu" class="d-md-block bg-light sidebar text-big">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                         <li class="nav-item">
