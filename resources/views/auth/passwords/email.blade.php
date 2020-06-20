@@ -34,7 +34,7 @@
     }
 
     .card-header{
-        background-color: #0C2340;
+        background-color: rgb(42,63,84);
         color:white;
         opacity:0.85;
     }

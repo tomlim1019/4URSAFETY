@@ -74,6 +74,7 @@
             text-decoration:none;
             color: white;
         }
+
         .myCard {
             width: 100%;
             height: auto;
@@ -82,6 +83,7 @@
             background-color: white;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         }   
+
         .text-big{
             font-size: 1.1rem;
         }
@@ -103,6 +105,20 @@
             border: 1px solid lightgray;
         }
 
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #0D3152;
+            color: white;
+            height:2rem;
+        }
+
+        .footer_content{
+            padding-top: 0.4rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -260,6 +276,12 @@
         </div>
         </main>
     </div>
+
+    <footer class="footer">
+        <div class="footer_content">           
+            <p style = "font-size:12px"><span style = "margin-right:0.5rem;">Email :</span>admin@test.com <span style ="margin-left: 4rem;"><span style = "margin-right:0.5rem;">Contact :</span>013-3834188 </span></p>
+        </div>
+    </footer>
 
 
     <!-- Scripts -->
