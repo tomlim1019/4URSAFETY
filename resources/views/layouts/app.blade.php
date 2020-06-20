@@ -134,7 +134,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="d-flex justify-content-between" style="width: 100%; padding-left: 15px; padding-right: 15px;">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     {{ config('app.name', '4URSAFETY') }}
                 </a>
