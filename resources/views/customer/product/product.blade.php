@@ -18,7 +18,7 @@
             </div>   
             <div class="card-body">
                 <h5 class="card-title">{{ $product->title }}</h5>
-                <p class="card-text">{{ $product->description }}</p>
+                <p class="card-text">Tenure: {{ $product->tenure }}</p>
                 <div style="text-align:center;">
                 <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-primary">Learn More</a>
                 </div>
