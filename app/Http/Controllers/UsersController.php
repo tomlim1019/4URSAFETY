@@ -26,7 +26,7 @@ class UsersController extends Controller
 
     public function createStaff(Request $request)
     {
-        $password = "4ursafety";
+        $password = '4ursafety';
 
         $user = User::create([
             'name' => $request->name,
@@ -39,7 +39,7 @@ class UsersController extends Controller
             'birthdate' => $request->birthdate,
         ]);
 
-        session()->flash('success', 'Staff created successfully.');
+        session()->flash('success', 'Staff created successfully, password is '.$password.'.');
 
         return redirect(route('staff'));
     }

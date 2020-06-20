@@ -12,18 +12,23 @@
         <h5 class="card-title text-center">Sales</h5>
         <p class="card-text text-center">{{ $sales }}</p>
       </div>
+      <a href="{{ route('logs.index') }}" class="stretched-link"></a>
     </div>
     <div class="card" style="width: 18rem; background-color: rgb(249,201,3); color: white; border-radius:0px;">
       <div class="card-body text-center">
         <h5 class="card-title">Pending Request</h5>
         <p class="card-text text-center">{{ $pendingRequest }}</p>
       </div>
+      <a href="{{ route('quotations.index') }}" class="stretched-link"></a>
     </div>
     <div class="card" style="width: 18rem; background-color: rgb(249,109,108); color: white; border-radius:0px;">
       <div class="card-body text-center">
         <h5 class="card-title">Pending Customer</h5>
         <p class="card-text text-center">{{ $pendingCustomer }}</p>
       </div>
+      @if(Auth::user()->role=='admin')
+      <a href="{{ route('customer') }}" class="stretched-link"></a>
+      @endif
     </div>
   </div>
 </div>

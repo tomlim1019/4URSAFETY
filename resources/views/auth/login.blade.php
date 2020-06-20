@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('content')
+@section('login')
 <div class="container">
-        <div class="col-md-8">
+        <div class="col-md-8 m-auto">
             <div class = "myContainer">
             <div class="card">
                 <div class="card-header font-weight-bold">{{ __('Sign in to 4URSAFETY') }}</div>
@@ -75,8 +75,7 @@
 <style>
     .myContainer{
         width: 100%;
-        padding: 55px 25px 25px 25px;
-        margin-left:55px;
+        padding-top: 3rem;
     }
 
     .card{

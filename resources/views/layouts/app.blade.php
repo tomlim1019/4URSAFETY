@@ -21,14 +21,13 @@
     <style>
         .bg-light{
             background-color: rgb(42,63,84) !important;
-            width: 13rem;
             min-height: calc(100vh - 59px);
             opacity: 0.95;            
         }
 
         .container-fluid{
             width: 100%;
-            padding-left: 10;
+            padding-left: 0.9rem;
             padding-top:3px;
         }
 
@@ -78,7 +77,7 @@
         .myCard {
             width: 100%;
             height: auto;
-            margin: 25px auto;
+            margin: 1.5rem auto;
             padding: 12px 25px 25px 25px;
             background-color: white;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -88,8 +87,14 @@
             font-size: 1.1rem;
         }
 
+        .sidebar{
+            padding: 0;
+        }
+
         .nav-link{
             font-family:'Raleway', sans-serif;
+            padding-left: 2rem;
+            padding-top: 0.4rem;
         }
 
         .title{
@@ -119,6 +124,11 @@
             padding-top: 0.4rem;
             text-align: center;
         }
+
+        .active{
+            background-color: RGB(53, 74, 95);
+        }
+        
     </style>
 </head>
 <body>
@@ -182,25 +192,25 @@
             @auth
             <div class="container-fluid">
                 <div class="row">
-                    <nav id="sidebarMenu" class="d-md-block bg-light sidebar text-big">
+                    <nav id="sidebarMenu" class="bg-light sidebar text-big col-md-2">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('home') }}">
+                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
                             <span data-feather="home"></span>
                             Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        @if(Auth::user()->role=='admin')
+                        @if(Auth::user()->role=='admin' || Auth::user()->role=='staff')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories.index') }}">
+                            <a class="nav-link {{ request()->routeIs('categories*') ? 'active' : '' }}" href="{{ route('categories.index') }}">
                             <span data-feather="file"></span>
                             Categories
                             </a>
                         </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ Auth::user()->role=='customer' ? route('customer.product') : route('products.index') }}">
+                            <a class="nav-link {{ (request()->routeIs('products*') || request()->routeIs('customer.product')) ? 'active' : '' }}" href="{{ Auth::user()->role=='customer' ? route('customer.product') : route('products.index') }}">
                             <span data-feather="file"></span>
                             Product
                             </a>
@@ -208,54 +218,57 @@
                         @if(Auth::user()->status == 'Approved')
                         @if(Auth::user()->role=='customer')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customer.log') }}">
+                            <a class="nav-link {{ (request()->routeIs('logs*') || request()->routeIs('customer.log'))  ? 'active' : '' }}" href="{{ route('customer.log') }}">
                             <span data-feather="file"></span>
                             My Product
                             </a>
                         </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ Auth::user()->role=='customer' ? route('customer.request') : route('quotations.index') }}">
+                            <a class="nav-link {{ (request()->routeIs('quotations*') || request()->routeIs('customer.request')) ? 'active' : '' }}" href="{{ Auth::user()->role=='customer' ? route('customer.request') : route('quotations.index') }}">
                             <span data-feather="shopping-cart"></span>
-                            @if(Auth::user()->role=='admin')
+                            @if(Auth::user()->role=='admin' || Auth::user()->role=='staff')
                             Request
                             @else
                             My Request
                             @endif
                             </a>
                         </li>
-                        @if(Auth::user()->role=='admin')
+                        @if(Auth::user()->role=='admin' || Auth::user()->role=='staff')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logs.index') }}">
+                            <a class="nav-link {{ request()->routeIs('logs*') ? 'active' : '' }}" href="{{ route('logs.index') }}">
                             <span data-feather="users"></span>
                             Purchase Log
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('staff.report') }}">
+                            <a class="nav-link {{ request()->routeIs('staff.report*') ? 'active' : '' }}" href="{{ route('staff.report') }}">
                             <span data-feather="bar-chart-2"></span>
                             Reports
                             </a>
                         </li>
+                        @if(Auth::user()->role=='admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customer') }}">
+                            <a class="nav-link {{ (request()->routeIs('customer') || request()->routeIs('customer.edit')) ? 'active' : '' }}" href="{{ route('customer') }}">
                             <span data-feather="layers"></span>
                             Customer
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('staff') }}">
+                            <a class="nav-link {{ request()->routeIs('staff') ? 'active' : '' }}" href="{{ route('staff') }}">
                             <span data-feather="home"></span>
                             Staff <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         @endif
                         @endif
+                        @endif
                         </ul>
                     </div>
                 </nav>
             @endauth
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            @yield('login')
+            <main role="main" class="col-md-10 mx-sm-auto">
                 @if(session()->has('success'))
                 <div class="alert alert-success">
                     {{ session()->get('success') }}
