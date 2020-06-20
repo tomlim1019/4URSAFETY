@@ -22,10 +22,11 @@ Auth::routes();
 Route::middleware(['auth', 'staff'])->group(function () {
     Route::resource('categories', 'CategoriesController');
     Route::resource('products', 'ProductsController')->except(['show']);
-    Route::resource('quotations', 'QuotationsController')->except(['show']);
-    Route::resource('logs', 'PurchaseLogsController')->except(['show']);
+    Route::resource('quotations', 'QuotationsController')->except(['show', 'store']);
+    Route::resource('logs', 'PurchaseLogsController')->except(['show', 'store']);
     Route::get('/report', 'ReportController@index')->name('staff.report');
     Route::put('/products/{product}/status', 'ProductsController@updateStatus')->name('product.status');
+    Route::get('/report/export', 'ReportController@export')->name('export');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -41,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/products/{product}', 'ProductsController@show')->name('products.show');
     Route::get('/quotations/{quotation}', 'QuotationsController@show')->name('quotations.show');
     Route::get('/logs/{log}', 'PurchaseLogsController@show')->name('logs.show');
+    Route::post('/quotations', 'QuotationsController@store')->name('quotations.store');
+    Route::post('/logs', 'PurchaseLogsController@store')->name('logs.store');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

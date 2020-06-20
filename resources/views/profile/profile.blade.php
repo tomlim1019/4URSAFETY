@@ -15,7 +15,11 @@
     </div>
 
     <div>
+    @if(Auth::user()->image)
     <img src="{{ asset('/storage/'.$profile->image) }}" class="mx-auto d-block pb-4" style="width: 150px">
+    @else
+    <img src="https://www.pngitem.com/pimgs/m/99-998739_dale-engen-person-placeholder-hd-png-download.png" class="mx-auto d-block pb-4" style="width: 150px">
+    @endif
 
     <div class="row">
         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email Address') }}</label>
@@ -65,6 +69,7 @@
         </div>
     </div>
 
+    @if(Auth::user()->role == 'customer')
     <div class="row">
         <label for="document" class="col-md-4 col-form-label text-md-right">{{ __('Document') }}</label>
 
@@ -77,6 +82,7 @@
         </div>
         @endif
     </div>
+    @endif
 </div>
 </div>
 

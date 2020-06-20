@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->string('image')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Others']);
-            $table->enum('role', ['customer', 'staff', 'admin'])->default('admin');
+            $table->enum('role', ['customer', 'staff', 'admin'])->default('customer');
             $table->enum('status', ['Approved', 'Pending', 'Rejected'])->default('Pending');
             $table->string('document')->nullable();
             $table->string('password');

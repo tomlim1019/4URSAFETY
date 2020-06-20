@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 
+use App\Quotation;
+
+use App\PurchaseLog;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
@@ -51,6 +55,16 @@ class UsersController extends Controller
 
     public function customerApproval(Request $request, User $user)
     {
+        if($request->status == 'Rejected'){
+            $count_1 = Quotation::where('user_id', '=', $user->id)->count();
+            $count_2 = PurchaseLog::where('user_id', '=', $user->id)->count();
+            if($count_1 > 0 || $count_2 >0){
+                session()->flash('danger', 'Customer cannot be rejected! There are products/requests under this customer!');
+
+                return redirect(route('customer'));
+            }
+        }
+
         $user->update([
             'status' => $request->status
           ]);
@@ -82,6 +96,14 @@ class UsersController extends Controller
 
     public function deleteCustomer(User $user)
     {
+        $count_1 = Quotation::where('user_id', '=', $user->id)->count();
+        $count_2 = PurchaseLog::where('user_id', '=', $user->id)->count();
+        if($count_1 > 0 || $count_2 >0){
+            session()->flash('danger', 'Customer cannot be deleted! There are products/requests under this customer!');
+
+            return redirect(route('customer'));
+        }
+
         $user->delete();
 
         session()->flash('success', 'Customer deleted successfully.');

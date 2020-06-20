@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use \App\Category;
 
+use \App\Product;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Categories\CreateCategoryRequest;
@@ -99,6 +101,13 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        $count = Product::where('category_id', '=', $category->id)->count();
+
+        if($count > 0){
+            session()->flash('danger', 'Category cannot be deleted! There are products under this category!');
+            
+            return redirect(route('categories.index'));
+        }
         $category->delete();
 
         session()->flash('success', 'Category deleted successfully.');
