@@ -121,6 +121,8 @@ class ProductsController extends Controller
         // check if new image
         $image = "storage/".$product->image;
 
+        $data['category_id'] = $request->category;
+
         if (File::exists($image) && $request->image) {
             // delete old one
             File::delete($image);
