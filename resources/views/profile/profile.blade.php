@@ -101,7 +101,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label id="modal-label" for="name" class="col-form-label">Image: </label>
-                <input type="file" class="form-control" id="input_name" name="image" required>
+                <input type="file" class="form-control" id="image" name="image" required>
             </div>
         </div>
         <div class="modal-footer">            
@@ -176,7 +176,6 @@
 @section('scripts')
 <script>
     function handleUpload(profile, x) {
-      console.log(x)
       var form = document.getElementById('uploadModalForm')
       form.action = `/profile/${x}/` + profile.id
 
@@ -188,9 +187,6 @@
 
       var label = document.getElementById('modal-label')
       label.innerHTML = `${x}:`
-
-      var input = document.getElementById('input_name')
-      input.name = x
 
       $('#uploadModal').modal('show')
     }
