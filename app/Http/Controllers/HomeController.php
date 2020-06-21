@@ -112,13 +112,13 @@ class HomeController extends Controller
     {
         $image = "storage/".$user->image;
 
-        if (File::exists($image) && $request->image) {
+        if (File::exists($image) && $request->picture) {
             // delete old one
             File::delete($image);
             // upload it
-            $image = $request->image->store('profile');
+            $image = $request->picture->store('profile');
         }
-        else if($request->image) $image = $request->image->store('profile');
+        else if($request->picture) $image = $request->picture->store('profile');
 
         // update attributes
         $user->update([
@@ -136,13 +136,13 @@ class HomeController extends Controller
     {
         $document = "storage/".$user->document;
 
-        if (File::exists($document)) {
+        if (File::exists($document) && $request->document) {
             // delete old one
             File::delete($document);
             // upload it
             $document = $request->document->store('idcard');
         }
-        else $document = $request->document->store('idcard');
+        else if ($request->document) $document = $request->document->store('idcard');
 
         // update attributes
         $user->update([
