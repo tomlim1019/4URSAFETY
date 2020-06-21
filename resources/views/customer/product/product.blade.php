@@ -6,13 +6,22 @@
         <h1 class="h2">Products</h1>
     </div>
 
+    @if($categories->count() < 1)
+    <div class="row d-flex justify-content-around">
+        <div class="card m-4 col-md-10">
+            <div class="m-4">
+                <p class="text-center">Nothing to show</p>
+            </div>
+        </div>
+    </div>
+    @else
     @foreach($categories as $category)
     <h1 class="h2 ml-4 mt-4">{{ $category->name }}</h1>
 
     <div class="row d-flex justify-content-around">    
         @foreach($products as $product)
         @if($product->category_id == $category->id)
-        <div class="myCard5" style="width: 20rem;">
+        <div class="myCard5 col-2">
             <div style = "text-align:center;">
                 <img src="{{ asset('/storage/'.$product->image) }}" class="card-img-top" alt="...">
             </div>   
@@ -29,6 +38,7 @@
     </div>
     <hr/>
     @endforeach
+    @endif
     
 </div>
 @endsection

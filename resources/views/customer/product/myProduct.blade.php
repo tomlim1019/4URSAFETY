@@ -7,6 +7,16 @@
         <h1 class="h2">My Product</h1>
     </div>
 
+    
+    @if($logs->count() < 1)
+    <div class="row d-flex justify-content-around">
+        <div class="card m-4 col-md-10">
+            <div class="m-4">
+                <p class="text-center">Nothing to show</p>
+            </div>
+        </div>
+    </div>
+    @else
     @foreach($logs as $log)
     <div class="card m-4">
         <div class="row">
@@ -14,7 +24,7 @@
                 <img src="{{ asset('/storage/'.$log->product->image) }}" class="card-img-top" alt="...">
             </div>
             <div class="col-md-9">
-                <div class="mt-2">
+                <div class="mt-4">
                     <p class="card-text font-weight-bold">Product Name: {{ $log->product->title }}</p>
                     <p class="card-text font-weight-bold">Purchase at: {{ $log->created_at }}</p>
                     <p class="card-text font-weight-bold">Tenure: {{ $log->product->tenure }} months</p>
@@ -24,5 +34,6 @@
         <a href=" {{ route('logs.show', $log->id) }}" class="stretched-link"></a>
     </div>
     @endforeach
+    @endif
 </div>
 @endsection

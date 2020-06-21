@@ -40,11 +40,20 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user()->role == "customer"){
-            $products = Product::where('status', '=', 'Active')->get();
+            $products = Product::where('status', '=', 'Active')
+                            ->orderBy('id', 'desc')
+                            ->take(5)
+                            ->get();
 
-            $logs = PurchaseLog::where('user_id', Auth::user()->id)->get();
+            $logs = PurchaseLog::where('user_id', Auth::user()->id)
+                            ->orderBy('id', 'desc')
+                            ->take(2)
+                            ->get();
 
-            $quotations = Quotation::where('user_id', Auth::user()->id)->get();
+            $quotations = Quotation::where('user_id', Auth::user()->id)
+                            ->orderBy('id', 'desc')
+                            ->take(2)
+                            ->get();
 
             return view('customer.home')->with('logs', $logs)->with('quotations', $quotations)->with('products', $products);
         }
