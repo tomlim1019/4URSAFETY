@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR1n2MR1SCTWaBVkg-fjJ1MPwvLJEBmCB9eM33IBIIZc971bfko&usqp=CAU">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
