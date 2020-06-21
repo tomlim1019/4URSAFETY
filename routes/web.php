@@ -58,4 +58,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/customer/{user}/edit', 'UsersController@editCustomer')->name('customer.edit');
     Route::get('/staff/{user}/edit', 'UsersController@editStaff')->name('staff.edit');
     Route::post('/staff', 'UsersController@createStaff')->name('register.staff');
-  });
+});

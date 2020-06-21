@@ -116,6 +116,7 @@ class ProductsController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        //dd($request);
         $data = $request->only(['title', 'description', 'price', 'tenure']);
         // check if new image
         $image = "storage/".$product->image;
@@ -127,7 +128,7 @@ class ProductsController extends Controller
             $image = $request->image->store('product');
             $data['image'] = $image;
         }
-        else {
+        else if($request->image){
             $image = $request->image->store('product');
             $data['image'] = $image;
         }
