@@ -22,9 +22,7 @@
 @section('css')
 <style>
     .myContainer{
-        width: 98%;
-        padding: 55px 25px 25px 27px;
-        margin-left:55px;
+        width: 100%;
     }
 
     .card{
