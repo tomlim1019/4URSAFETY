@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('login')
 <div class="container">
     <div class="myContainer">
         <div class="col-md-8">
