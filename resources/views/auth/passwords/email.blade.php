@@ -2,20 +2,20 @@
 
 @section('login')
 <div class="container">
-    <div class="myContainer">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+        <div class="col-md-8 m-auto">
+            <div class="myContainer">
+                <div class="card">
+                    <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    <P class="text-center">Please call our customer service @ 013-3834188</P>
-                </div>
-                <div class="text-center mb-2">
-                    <a href="{{ route('login') }}" class="btn btn-primary">Back</a>
+                    <div class="card-body">
+                        <P class="text-center">Please call our customer service @ 013-3834188</P>
+                    </div>
+                    <div class="text-center mb-2">
+                        <a href="{{ route('login') }}" class="btn btn-primary">Back</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection
 
@@ -23,6 +23,7 @@
 <style>
     .myContainer{
         width: 100%;
+        padding-top: 3rem;
     }
 
     .card{
